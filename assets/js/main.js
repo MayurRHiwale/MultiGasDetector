@@ -7,8 +7,19 @@ const airQualityStat = document.querySelector(".air-quality-status")
 const srchBtn = document.querySelector(".search-btn")
 const componentsEle = document.querySelectorAll(".component-val")
 
-const appId = "3b30923d4600bf1e2f775c7d41b1a18f" // Get your own API Key from https://home.openweathermap.org/api_keys
-const link = "https://api.openweathermap.org/data/2.5/air_pollution"	// API end point
+const appId = "3b30923d4600bf1e2f775c7d41b1a18f" // https://home.openweathermap.org/api_keys
+const link = "http://103.168.165.46/server/node"	// API end point https://api.openweathermap.org/data/2.5/air_pollution
+
+/*token
+let variable = await fetch('http://103.168.165.46/server/user/login', {method: 'post',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:"viewer", password:"viewer"})})
+console.log(variable.json())
+let A = await variable.json()*/
+
+
+//refresh after 30 sec
+window.setTimeout( function() {
+  window.location.reload();
+}, 15000);
 
 const getUserLocation = () => {
 	// Get user Location
@@ -32,11 +43,125 @@ const onPositionGathered = (pos) => {
 
 const getAirQuality = async (lat, lon) => {
 	// Get data from api
-	const rawData = await fetch(`${link}?lat=${lat}&lon=${lon}&appid=${appId}`).catch(err => {
-		onPositionGatherError({ message: "Something went wrong. Check your internet conection." })
+	const rawData = await fetch(`${link}`, 
+    {
+      method: 'GET', // *GET, POST, PUT, DELETE, etc.
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': "bearer "+ 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InZpZXdlciIsImluc3RpdHV0ZSI6ImF0cyIsImRlc2lnbmF0aW9uIjoiYWRtaW4iLCJpYXQiOjE2NjQ0NTUwMjJ9.KW_hXmb4ZLNCB1id8WXpZFWJsdGn4hFPUoVwyBM9bPA'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+     
+      /*body: JSON.stringify(data) // body data type must match "Content-Type" header*/
+    }
+    
+  ).catch(err => {
+		/*onPositionGatherError({ message: "Something went wrong. Check your internet conection." })*/
 		console.log(err)
 	})
 	const airData = await rawData.json()
+  console.log(airData)
+  // for loop into airData array ex. airData[0]
+  for(const obj in airData){
+    var card1 =airData[obj].reading.uid;
+    document.getElementById("uid").innerHTML = card1 
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].reading.user;
+    document.getElementById("user").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].reading.co2;
+    document.getElementById("co2").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].reading.battery;
+    document.getElementById("battery").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].reading.datetime;
+    document.getElementById("datetime").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].reading.humidity;
+    document.getElementById("humidity").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].reading.pressure;
+    document.getElementById("pressure").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].reading.temperature;
+    document.getElementById("temperature").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].reading.sublocation;
+    document.getElementById("sublocation").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].co2Range.max;
+    document.getElementById("co2rangeMax").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].co2Range.min;
+    document.getElementById("co2rangeMin").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].humidityRange.max;
+    document.getElementById("humidityRangeMax").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].isArchived;
+    document.getElementById("isArchived").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].isCO2;
+    document.getElementById("isCO2").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].isCurrentlyFaulty;
+    document.getElementById("isCurrentlyFaulty").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].isHumidity;
+    document.getElementById("isHumidity").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].isTemperature;
+    document.getElementById("isTemperature").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].location;
+    document.getElementById("location").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].machineName;
+    document.getElementById("machineName").innerHTML = card1
+    
+  }
+  for(const obj in airData){
+    var card1 =airData[obj].humidityRange.min;
+    document.getElementById("humidityRangeMin").innerHTML = card1
+    
+  }
 	setValuesOfAir(airData)
 	setComponentsOfAir(airData)
 }
@@ -518,5 +643,11 @@ fetch('https://air-quality-by-api-ninjas.p.rapidapi.com/v1/airquality?city=Seatt
 	.then(response => console.log(response))
 	.catch(err => console.error(err)); */
 
+  //signout
+  const handleLogout = () => {
+    window.localStorage.clear();
+    window.location.reload(true);
+    window.location.replace('/');
+  };
 
 })();

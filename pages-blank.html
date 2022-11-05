@@ -164,7 +164,6 @@
               <i class="bi bi-circle"></i><span>Chart.js</span>
             </a>
           </li>
-   
         </ul>
       </li><!-- End Charts Nav -->     
       <!-- End Icons Nav -->
@@ -201,80 +200,67 @@
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
-  <!-- <p class="text-center p-5">
-      This page is only available in the pro version! <a href="https://bootstrapmade.com/demo/templates/NiceAdmin/pages-contact.html" target="_blank">Preview the page online</a> | <a href="https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/#download" target="_blank">Buy the pro version</a>
-    </p>
-  -->
-  <!-- ======= Contact Section ======= -->
-  <section id="contact" class="contact">
-    <div class="container" data-aos="fade-up">
 
-      <div class="section-title">
-        <h2>Contact</h2>
-        <p>Contact Us</p>
-      </div>
+    <div class="pagetitle">
+      <h1>Others</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item">Pages</li>
+          <li class="breadcrumb-item active">others</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
 
-      <div>
-        <iframe style="border:0; width: 100%; height: 270px;" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" allowfullscreen></iframe>
-      </div>
+    <section class="section">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Outline Buttons</h5>
+          <!--node-->
+          <button type="button" class="btn btn-outline-primary" class="open-button" onclick="openForm()">Add node</button>
+          <div class="form-popup" id="myForm">
+            <form action="/action_page.php" class="form-container">
+              <h1>Add Node</h1>
+              <label for="UID">UID:</label><br>
+              <input type="text" id="fname" name="fname" value="enter user id" required><br><br>
+              
+              <label for="location">Location:</label><br>
+              <input type="text" id="lname" name="lname" value="Enter Location" required><br><br>
 
-      <div class="row mt-5">
+              <label for="sublocation">SubLocation:</label><br>
+              <input type="text" id="lname" name="lname" value="Enter SubLocation" required><br><br>
 
-        <div class="col-lg-4">
-          <div class="info">
-            <div class="address">
-              <i class="bi bi-geo-alt"></i>
-              <h4>Location:</h4>
-              <p>Pune, Maharashtra </p>
-            </div>
+              <label for="Machine">Machine:</label><br>
+              <input type="text" id="lname" name="lname" value="Enter Machine" required><br><br>
 
-            <div class="email">
-              <i class="bi bi-envelope"></i>
-              <h4>Email:</h4>
-              <p>mayurhiwale21@gmail.com</p>
-            </div>
+              <input type="checkbox" id="Temp" name="Temp" value="Temp">
+              <label for="Temp"> Temperature</label><br>
 
-            <div class="phone">
-              <i class="bi bi-phone"></i>
-              <h4>Call:</h4>
-              <p>7887808398</p>
-            </div>
+              <input type="checkbox" id="Hum" name="Hum" value="Hum">
+              <label for="Hum"> Humidity</label><br>
 
+              <input type="checkbox" id="CO_2" name="CO_2" value="CO_2">
+              <label for="CO_2">CO2</label><br><br>
+          
+              <button type="submit" class="btn">Add </button>
+              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            </form>
           </div>
+          
+          <script>
+          function openForm() {
+            document.getElementById("myForm").style.display = "block";
+          }
+          
+          function closeForm() {
+            document.getElementById("myForm").style.display = "none";
+          }
+          </script>
 
         </div>
-
-        <div class="col-lg-8 mt-5 mt-lg-0">
-
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-            <div class="row">
-              <div class="col-md-6 form-group">
-                <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
-              </div>
-              <div class="col-md-6 form-group mt-3 mt-md-0">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
-              </div>
-            </div>
-            <div class="form-group mt-3">
-              <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-            </div>
-            <div class="form-group mt-3">
-              <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-            </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
-          </form>
-
-        </div>
-
       </div>
+    </section>
 
-    </div>
-  </section><!-- End Contact Section -->
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
